@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karta Polaka</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/c8da9518dd.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="done-container">
+      <div class="done-container-header">
+        <span class="amount-done">0/313</span>
+        <span class="close-done-list-btn">&#215;</span>
+      </div>
+      <div class="for-dones"></div>
+    </div>
+    <div class="question-container">
+      <p class="question-number"></p>
+      <p class="question">
+        Kliknij na RANDOM, aby otrzymać losowe pytanie. Możesz też wpisać numer
+        ręcznie w polu tekstowym poniżej
+      </p>
+    </div>
+    <div class="button-container">
+      <button class="btn back"><i class="fa-solid fa-arrow-left"></i></button>
+      <button class="btn random">Random</button>
+      <button class="btn done"><i class="fa-solid fa-check"></i></button>
+    </div>
+    <div class="button-container">
+      <form name="numberForm">
+        <input
+          name="inputNumber"
+          type="number"
+          min="1"
+          max="313"
+          placeholder="#1-313"
+          class="inputNumber"
+        />
+        <input
+          name="submitNumber"
+          type="submit"
+          value="&#129046;"
+          class="btn inputSubmit"
+        />
+      </form>
+      <button class="btn done-list-btn">
+        <i class="fa-solid fa-check"></i> <i class="fa-solid fa-list"></i>
+      </button>
+    </div>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
