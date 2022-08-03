@@ -1,123 +1,58 @@
-"use strict";
-import QUESTIONS_ARRAY from "./static";
+import ClickableBtn from "./src/components/ClickableBtn.js";
+import RandomBtn from "./src/components/RandomBtn.js";
+import CurrentQuestion from "./src/CurrentQuestion.js";
+import PreviousQuestion from "./src/previousQuestion.js";
+import Questions from "./src/Questions.js";
+import QUESTIONS_ARRAY from "./static/static.js";
 
-const randomBtn = document.querySelector(".random");
-const backBtn = document.querySelector(".back");
-const doneBtn = document.querySelector(".done");
-const doneListBtn = document.querySelector(".done-list-btn");
-const closeDoneListBtn = document.querySelector(".close-done-list-btn");
-const amountDone = document.querySelector(".amount-done");
-const forDones = document.querySelector(".for-dones");
-let deleteDoneButtons;
+export class App {
+  questions = new Questions(QUESTIONS_ARRAY);
+  currentQuestion = new CurrentQuestion(
+    document.querySelector(".question"),
+    document.querySelector(".question-number")
+  );
+  previousQuestion = new PreviousQuestion();
 
-const question = document.querySelector(".question");
-const questionNumber = document.querySelector(".question-number");
-const doneContainer = document.querySelector(".done-container");
-
-const numberForm = document.forms.numberForm;
-const inputNumber = numberForm.elements.inputNumber;
-
-class previousQuestion {
-  text,
-  number
-  previousNumberValue,
-}
-
-numberForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (questionNumber.innerText !== "") {
-    previousQuestion = question.innerText;
-    previousNumber = questionNumber.innerText;
-    previousNumberValue = previousNumber.match(/#\d*/).toString().slice(1);
-  }
-  if (inputNumber.value) {
-    questionNumber.innerText = `#${inputNumber.value}/313`;
-    question.innerText = QUESTIONS_ARRAY[inputNumber.value - 1];
-  }
-});
-
-backBtn.addEventListener("click", () => {
-  if (previousNumber) {
-    question.innerText = previousQuestion;
-    questionNumber.innerText = previousNumber;
-    inputNumber.value = previousNumberValue;
-  }
-});
-
-randomBtn.addEventListener("click", () => {
-  getRandomQuestion();
-});
-
-doneBtn.addEventListener("click", () => {
-  if (questionNumber.innerText !== "") {
-    localStorage.setItem(
-      `${questionNumber.innerText.match(/#\d*/).toString()}`,
-      question.innerText
-    );
-  }
-});
-
-doneListBtn.addEventListener("click", () => {
-  doneContainer.classList.toggle("done-container-clicked");
-  amountDone.innerText = `${localStorage.length}/313`;
-  createDoneList();
-  deleteDoneButtons = document.querySelectorAll(".done-btn-delete");
-
-  Array.from(deleteDoneButtons).forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const number = btn.parentNode.firstChild.firstChild.innerText;
-      btn.parentNode.parentNode.removeChild(btn.parentNode);
-      localStorage.removeItem(number);
-      amountDone.innerText = `${localStorage.length}/313`;
-    });
+  randomBtn = new ClickableBtn(document.querySelector(".random"), () => {
+    this.onRandomBtnClick();
   });
-});
 
-closeDoneListBtn.addEventListener("click", () => {
-  doneContainer.classList.toggle("done-container-clicked");
-});
+  backBtn = new ClickableBtn(document.querySelector(".back"), () => {
+    this.onBackBtnClick;
+  });
 
-function createDoneList() {
-  const keys = Object.keys(localStorage);
-  if (forDones.hasChildNodes() === true) {
-    while (forDones.firstChild) {
-      forDones.removeChild(forDones.firstChild);
+  onRandomBtnClick() {
+    this.setRandomQuestion();
+    this.currentQuestion.renderQuestion();
+  }
+
+  onBackBtnClick() {
+    if (this.previousQuestion.getId() !== null) {
+      this.currentQuestion.setCurrentQuestion(
+        this.previousQuestion.getPreviousQuestion()
+      );
+      this.currentQuestion.renderQuestion();
     }
   }
-  for (let key of keys) {
-    const itemDiv = document.createElement("div");
-    const number = document.createElement("div");
-    const question = document.createElement("p");
-    const btnDelete = document.createElement("div");
 
-    number.appendChild(document.createElement("p"));
-    question.appendChild(document.createElement("p"));
-    btnDelete.appendChild(document.createElement("p"));
+  setCurrentQuestionWithPrevious(question) {
+    this.previousQuestion.setPreviousQuestionFromCurrent(
+      this.currentQuestion.getCurrentQuestion()
+    );
+    this.currentQuestion.setCurrentQuestion(question);
+  }
 
-    number.querySelector("p").innerText = key;
-    question.querySelector("p").innerText = localStorage.getItem(key);
-    btnDelete.querySelector("p").innerText = "×";
+  setRandomQuestion() {
+    const randomQuestion = this.questions.getRandomQuestion();
+    this.setCurrentQuestionWithPrevious(randomQuestion);
+  }
 
-    itemDiv.classList.add("done-item-div");
-    number.classList.add("done-item-number");
-    question.classList.add("done-item-question");
-    btnDelete.classList.add("done-btn-delete");
-
-    itemDiv.appendChild(number);
-    itemDiv.appendChild(question);
-    itemDiv.appendChild(btnDelete);
-
-    forDones.appendChild(itemDiv);
+  start() {
+    this.randomBtn.addOnClickListener();
+    this.backBtn.addOnClickListener();
   }
 }
 
-function getRandomQuestion() {
-  let random = Math.floor(Math.random() * QUESTIONS_ARRAY.length);
-  if (!localStorage.hasOwnProperty(`#${random + 1}`)) {
-    questionNumber.innerText = `#${random + 1}/313`;
-    question.innerText = QUESTIONS_ARRAY[random];
-    inputNumber.value = random + 1;
-  } else {
-    return getRandomQuestion();
-  }
-}
+const myApp = new App();
+
+export default myApp;
