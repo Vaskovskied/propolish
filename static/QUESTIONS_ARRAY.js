@@ -1125,7 +1125,7 @@ const QUESTIONS_ARRAY = [
   },
   {
     id: 282,
-    text: "Niedziela i poniedziałek – pierwsza niedziela po pierwszej wiosennej pełni księżyca ",
+    text: "Niedziela i poniedziałek - pierwsza niedziela po pierwszej wiosennej pełni księżyca ",
   },
   {
     id: 283,

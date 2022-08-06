@@ -6,8 +6,13 @@ class InputNumberForm {
       this.form.addEventListener("submit", (e) => {
         e.preventDefault();
         onSubmitFn(+this.getInputValue());
+        this.emptyInputValue();
       });
     };
+  }
+
+  emptyInputValue() {
+    this.input.value = "";
   }
 
   getInputValue() {

@@ -15,6 +15,10 @@ class Questions {
     const randomIndex = Math.floor(Math.random() * this.questions.length);
     return this.questions[randomIndex];
   }
+
+  getQuestionsAmount() {
+    return this.questions.length;
+  }
 }
 
 export default Questions;
