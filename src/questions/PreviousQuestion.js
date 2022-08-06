@@ -14,6 +14,11 @@ class PreviousQuestion {
     return { id: this.id, text: this.text };
   }
 
+  nullPreviousQuestion() {
+    this.id = null;
+    this.text = null;
+  }
+
   setPreviousQuestionFromCurrent(currentQuestion) {
     if (currentQuestion.id !== null) {
       this.text = currentQuestion.text;

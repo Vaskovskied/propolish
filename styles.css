@@ -95,7 +95,7 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.inputNumber {
+.input-number {
   display: inline;
   cursor: auto;
   background-color: #fff;
@@ -113,11 +113,11 @@ input[type="number"] {
   border-radius: none;
 }
 
-.inputNumber:focus {
+.input-number:focus {
   outline: none;
 }
 
-.inputSubmit {
+.submit-number {
   display: none;
   width: 60px;
   background-color: rgb(0, 185, 52);

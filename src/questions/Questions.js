@@ -1,5 +1,3 @@
-import QUESTIONS_ARRAY from "../static/static.js";
-
 class Questions {
   constructor(questionsArray) {
     this.questions = questionsArray;
@@ -7,6 +5,10 @@ class Questions {
 
   getQuestions() {
     return this.questions;
+  }
+
+  getQuestionById(targetId) {
+    return this.questions.find((item) => item.id === targetId);
   }
 
   getRandomQuestion() {

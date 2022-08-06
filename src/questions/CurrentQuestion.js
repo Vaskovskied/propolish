@@ -9,6 +9,14 @@ class CurrentQuestion {
   id = null;
   text = null;
 
+  getId() {
+    return this.id;
+  }
+
+  getText() {
+    return this.text;
+  }
+
   getCurrentQuestion() {
     return { id: this.id, text: this.text };
   }
@@ -21,7 +29,7 @@ class CurrentQuestion {
 
   renderQuestion() {
     this.placeToRender.question.innerText = this.text;
-    this.placeToRender.number.innerText = "#" + this.id;
+    this.placeToRender.number.innerText = "#" + this.id + "/313";
   }
 }
 

@@ -1213,7 +1213,7 @@ const QUESTIONS_ARRAY = [
   },
   {
     id: 304,
-    text: "Kto jest świętym patronem Polski? Патрон Польши?",
+    text: "Kto jest świętym patronem Polski?",
   },
   {
     id: 305,
