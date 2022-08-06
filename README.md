@@ -4,6 +4,12 @@
 
 > :question: This is a new version of [my old app](https://github.com/Vaskovskied/karta-Polaka-pytania-app) made to solidify knowledge about OOP and ES6 classes.
 
+### Stack:  
+
+* HTML
+* CSS
+* JS
+
 Small app to learn questions people need when take the karta Polaka exams.
 
 You can get random question or enter number manually.
