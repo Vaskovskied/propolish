@@ -1,6 +1,6 @@
-# karta-Polaka-pytania-app
+# PROPOLISH
 
-> [View and test it here]()
+> [View and test it here](https://vaskovskied.github.io/propolish/)
 
 > :question: this is a new version of [my old app](https://github.com/Vaskovskied/karta-Polaka-pytania-app) made to solidify knowledge about OOP and ES6 classes.
 
@@ -16,5 +16,5 @@ You can also open a list learned question list by clicking the large button near
 
 You can also delete question if you need.
 
-!!!Questions are stored into the local browser storage. This means you can't access this things if you use device different than you use or different browser than
-one you used to open this app. It is very important to know. Please don't delete your browsing history and other data if you wish to use this app properly and conveniently!!!
+> :warning: Questions are stored into the local browser storage. This means you can't access this things if you use device different than you use or different browser than
+one you used to open this app. It is very important to know. Please don't delete your browsing history and other data if you wish to use this app properly and conveniently :warning:
