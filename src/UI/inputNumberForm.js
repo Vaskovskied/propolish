@@ -1,6 +1,6 @@
 class InputNumberForm {
-  constructor(formHTMLelement, onSubmitFn) {
-    this.form = formHTMLelement;
+  constructor(onSubmitFn) {
+    this.form = document.forms.numberForm;
     this.input = this.form.elements.inputNumber;
     this.addOnSubmitListener = () => {
       this.form.addEventListener("submit", (e) => {

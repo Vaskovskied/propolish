@@ -1,4 +1,4 @@
 "use stict";
-import myApp from "./app.js";
+import propolish from "./app.js";
 
-myApp.start();
+propolish.start();

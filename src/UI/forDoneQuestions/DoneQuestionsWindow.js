@@ -1,30 +1,47 @@
-import DoneQuestionCards from "./DoneQuestionCard";
+import { doneQuestions } from "../../../app.js";
+import DoneQuestionCards from "./DoneQuestionCard.js";
 
 class DoneQuestionsWindow {
-  constructor(
-    mainContainerElement,
-    doneCardsElement,
-    closeWindowBtnElement,
-    amountDoneElement
-  ) {
-    this.doneQuestionCards = new DoneQuestionCards();
+  constructor() {
     this.HTMLelements = {
-      mainContainer: mainContainerElement,
-      cards: doneCardsElement,
-      closeWindowBtn: closeWindowBtnElement,
-      amountDone: amountDoneElement,
+      mainContainer: document.querySelector(".done-container"),
+      closeWindowBtn: document.querySelector(".close-done-list-btn"),
+      amountDone: document.querySelector(".amount-done"),
     };
   }
 
-  renderDoneCardsFromArr(arr, removeFromLocalStorageFn) {
-    for (let i = 0; index < arr.length; i++) {
-      const item = arr[i];
-      this.doneQuestionCards.renderDoneCard(
-        item,
-        removeFromLocalStorageFn,
-        this.HTMLelements.cards
-      );
-    }
+  doneQuestionCards = new DoneQuestionCards(
+    this.decrementAndRenderAmountDone.bind(this)
+  );
+
+  decrementAndRenderAmountDone() {
+    this.renderAmountDone(doneQuestions.getDoneQuestionsAmount() - 1);
+  }
+
+  renderAmountDone(amount) {
+    this.HTMLelements.amountDone.innerText = amount + "/313";
+  }
+
+  closeWindow() {
+    this.HTMLelements.mainContainer.classList.remove("done-container-clicked");
+  }
+
+  openWindow() {
+    this.HTMLelements.mainContainer.classList.add("done-container-clicked");
+  }
+
+  start() {
+    this.HTMLelements.closeWindowBtn.addEventListener(
+      "click",
+      this.closeWindow.bind(this)
+    );
+  }
+
+  open() {
+    this.openWindow();
+    this.doneQuestionCards.deleteAllDoneCards();
+    this.doneQuestionCards.renderDoneCardsFromLocalStorage();
+    this.renderAmountDone(doneQuestions.getDoneQuestionsAmount());
   }
 }
 

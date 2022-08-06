@@ -1,9 +1,9 @@
 class CurrentQuestion {
-  constructor(questionHTMLelement, numberHTMLelement) {
+  constructor() {
     this.placeToRender = {
       // for rendering purposes
-      question: questionHTMLelement,
-      number: numberHTMLelement,
+      question: document.querySelector(".question"),
+      number: document.querySelector(".question-number"),
     };
   }
   id = null;

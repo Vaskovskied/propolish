@@ -151,7 +151,7 @@ input[type="number"] {
   padding: 1.2rem 2rem 0;
 }
 
-.close-done-btn {
+.close-done-list-btn {
   position: relative;
   cursor: pointer;
   bottom: 30%;
@@ -161,7 +161,7 @@ input[type="number"] {
 .for-dones {
   margin-top: 70px;
   padding: 1.5rem;
-  min-height: 100%;
+  height: calc(100% - 70px);
   overflow: auto;
 }
 

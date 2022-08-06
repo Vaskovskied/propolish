@@ -17,7 +17,7 @@ class DoneQuestions {
       if (this.isInLocalStorage(question)) {
         return;
       }
-      const stored = this.getAllFromLocalStorageAsObject();
+      const stored = this.getAllFromLocalStorageAsArray();
       const withNew = [...stored, question];
       this.setAndSortLocalStorageFromArr(withNew);
     } else {
@@ -27,11 +27,11 @@ class DoneQuestions {
   }
 
   removeFromLocalStorage(question) {
-    const targetIndex = this.getAllFromLocalStorageAsObject().findIndex(
+    const targetIndex = this.getAllFromLocalStorageAsArray().findIndex(
       (item) => item.id === question.id
     );
 
-    const stored = this.getAllFromLocalStorageAsObject();
+    const stored = this.getAllFromLocalStorageAsArray();
     stored.splice(targetIndex, 1);
 
     this.setAndSortLocalStorageFromArr(stored);
@@ -39,20 +39,20 @@ class DoneQuestions {
 
   isInLocalStorage(question) {
     if (!this.getAllFromLocalStorage()) return;
-    return this.getAllFromLocalStorageAsObject().some(
+    return this.getAllFromLocalStorageAsArray().some(
       (item) => item.id === question.id
     );
   }
 
   getDoneQuestionsAmount() {
-    return getAllFromLocalStorageAsObject().length;
+    return this.getAllFromLocalStorageAsArray().length;
   }
 
   getAllFromLocalStorage() {
     return localStorage.getItem(this.localStorageAdress);
   }
 
-  getAllFromLocalStorageAsObject() {
+  getAllFromLocalStorageAsArray() {
     return JSON.parse(this.getAllFromLocalStorage());
   }
 

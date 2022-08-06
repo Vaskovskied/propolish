@@ -1,10 +1,26 @@
+import { doneQuestions } from "../../../app.js";
+
 class DoneQuestionCards {
-  placeToRender;
-  renderDoneCardFromQuestion(
-    question,
-    removeFromLocalStorageFn,
-    placeToRender
-  ) {
+  constructor(decrementAmountDoneFn) {
+    this.placeToRender = document.querySelector(".for-dones");
+    this.decrementAmountDone = decrementAmountDoneFn;
+  }
+
+  deleteAllDoneCards() {
+    while (this.placeToRender.firstChild) {
+      this.placeToRender.removeChild(this.placeToRender.firstChild);
+    }
+  }
+
+  renderDoneCardsFromLocalStorage() {
+    const arr = doneQuestions.getAllFromLocalStorageAsArray();
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i];
+      this.renderDoneCardFromQuestion(item);
+    }
+  }
+
+  renderDoneCardFromQuestion(question) {
     const card = document.createElement("div"),
       numberDiv = document.createElement("div"),
       questionP = document.createElement("p"),
@@ -26,11 +42,11 @@ class DoneQuestionCards {
     card.appendChild(questionP);
     card.appendChild(btnDelete);
 
-    this.placeToRender = placeToRender;
     this.placeToRender.appendChild(card);
 
     btnDelete.addEventListener("click", () => {
-      removeFromLocalStorageFn(question);
+      this.decrementAmountDone();
+      doneQuestions.removeFromLocalStorage(question);
       this.placeToRender.removeChild(card);
     });
   }
