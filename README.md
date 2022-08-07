@@ -1,6 +1,6 @@
 # PROPOLISH
 
-> [View and test it here](https://vaskovskied.github.io/propolish/)
+### [VIEW AND TEST IT HERE](https://vaskovskied.github.io/propolish/)
 
 > :question: This is a new version of [my old app](https://github.com/Vaskovskied/karta-Polaka-pytania-app) made to solidify knowledge about OOP and ES6 classes.
 
